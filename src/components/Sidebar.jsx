@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import DisplayContent from './DisplayContent';
 import Home from './Home';
+import Profilo from './Profilo';
 
-const Dashboard = () => <div>Dashboard Component</div>;
-const Accounts = () => <div>Accounts Component</div>;
-const Tickets = () => <div>Tickets Component</div>;
-const Settings = () => <div>Settings Component</div>;
+
 
 const Sidebar = () => {
   const [activeComponent, setActiveComponent] = useState('Home');
+  const [componentData, setComponentData] = useState({ visible: false });
+
+   // Callback che verrà chiamata da Home
+   const handleHomeData = (data) => {
+    console.log("Visibile passata da HOME", data);
+    setComponentData(data);
+  };
 
   const components = {
-    Home: <Home />,
-    Accounts: <Accounts />,
-    Tickets: <Tickets />,
-    Settings: <Settings />,
+    Home: <Home onDataChange={handleHomeData} />,
+    Profilo: <Profilo onDataChange={handleHomeData}/>
   };
+  
 
   return (
     <div className="flex">
       <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r dark:bg-gray-900 dark:border-gray-700">
         <div className="flex flex-col justify-between flex-1">
           <nav>
-            {["Home", "Accounts", "Tickets", "Settings"].map((item, index) => (
+            {["Home", "Profilo"].map((item, index) => (
               <button
                 key={index}
                 onClick={() => setActiveComponent(item)}
@@ -34,8 +38,14 @@ const Sidebar = () => {
           </nav>
         </div>
       </aside>
-      <main className="flex-1 p-4">
-        <DisplayContent>{components[activeComponent]}</DisplayContent>
+      <main className="flex-1 p-4 flex flex-col gap-10">
+        <DisplayContent 
+          titleProp={componentData.title} 
+          visibleProp={componentData.visible}
+          componentDataProp={componentData}
+        >
+          {components[activeComponent]}
+        </DisplayContent>
       </main>
     </div>
   );

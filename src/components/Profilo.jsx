@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import DivUI from "../ui-components/DivUI";
 
-const Home = ({ onDataChange }) => {
+const Profilo = ({ onDataChange }) => {
 
-  const visibleFirstCard = true;
+  const visibleFirstCard = false;
   const titleCard = "Ciao";
   const paragraphCard = "Bentornato";
 
@@ -25,22 +24,12 @@ const Home = ({ onDataChange }) => {
 
   return (
     <>
-      <div className='flex gap-4'>
-        <DivUI
-          widthProp="w-1/2"
-        >
-
-        </DivUI>
-
-        <DivUI
-          widthProp="w-1/2"
-        >
-
-        </DivUI>
+      <div>
+        <h1>Profilo</h1>
       </div>
     </>
 
   );
 };
 
-export default Home;
+export default Profilo;

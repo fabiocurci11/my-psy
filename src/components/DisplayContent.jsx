@@ -1,10 +1,27 @@
-const DisplayContent = ({ children }) => {
+import DivUI from "../ui-components/DivUI";
+import TitleUI from '../ui-components/TitleUI';
+import ParagraphUI from '../ui-components/ParagraphUI';
+
+const DisplayContent = ({ titleProp, visibleProp, componentDataProp, children }) => {
+  
+    const visible = visibleProp
+  
+    console.log("DC | ComponentDataProp: ",componentDataProp)
     return (
-      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+      <>
+      {/* Card iniziale */}
+        <DivUI
+          visibleProp={visible}
+        >
+          <TitleUI textProp={componentDataProp.title}/>
+          <ParagraphUI textProp={componentDataProp.paragraph}/>
+
+        </DivUI>
+        
+        {/* Componente selezionato */}
         {children}
-      </div>
+      </>
     );
   };
   
   export default DisplayContent;
-  
