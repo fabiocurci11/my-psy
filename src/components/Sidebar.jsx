@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DisplayContent from './DisplayContent';
 import Home from './Home';
 import Profilo from './Profilo';
+import Patients from './Patients';
 
 
 
@@ -17,7 +18,8 @@ const Sidebar = () => {
 
   const components = {
     Home: <Home onDataChange={handleHomeData} />,
-    Profilo: <Profilo onDataChange={handleHomeData}/>
+    Profilo: <Profilo onDataChange={handleHomeData}/>,
+    Pazienti: <Patients onDataChange={handleHomeData}/>
   };
   
 
@@ -26,7 +28,7 @@ const Sidebar = () => {
       <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r dark:bg-gray-900 dark:border-gray-700">
         <div className="flex flex-col justify-between flex-1">
           <nav>
-            {["Home", "Profilo"].map((item, index) => (
+            {["Home", "Profilo", "Pazienti"].map((item, index) => (
               <button
                 key={index}
                 onClick={() => setActiveComponent(item)}
