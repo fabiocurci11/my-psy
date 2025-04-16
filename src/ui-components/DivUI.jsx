@@ -3,7 +3,7 @@ import React, { Children, useState } from 'react';
 
 const DivUI = ({
     paddingProp = "p-6",
-    bgColorProp = "bg-[#FCF9F7]",
+    bgColorProp = "bg-[#fff4ed]",
     borderProp = "rounded-lg",
     shadowProp = "shadow-md",
     widthProp = "w-full",
