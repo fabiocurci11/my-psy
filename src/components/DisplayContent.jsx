@@ -14,7 +14,10 @@ const DisplayContent = ({ titleProp, visibleProp, componentDataProp, children })
           visibleProp={visible}
         >
           <TitleUI textProp={componentDataProp.title}/>
-          <ParagraphUI textProp={componentDataProp.paragraph}/>
+
+          {componentDataProp.paragraph &&     
+            <ParagraphUI textProp={componentDataProp.paragraph}/>
+          }
 
         </DivUI>
         
