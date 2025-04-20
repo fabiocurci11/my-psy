@@ -2,6 +2,7 @@ import React, { Children, useState } from 'react';
 
 
 const DivUI = ({
+    ref,
     paddingProp = "p-6",
     bgColorProp = "bg-[#fff4ed]",
     borderProp = "rounded-lg",
