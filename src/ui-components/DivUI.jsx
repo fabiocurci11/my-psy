@@ -12,6 +12,7 @@ const DivUI = ({
     flexDirectionProp = "flex-col",
     flexGap = "gap-4",
     visibleProp = true,
+    className = "",
     children
 }) => {
 
@@ -24,7 +25,8 @@ const DivUI = ({
         widthProp,
         flexProp,
         flexDirectionProp,
-        flexGap
+        flexGap,
+        className
       ]
         .filter((cssClass) => cssClass !== undefined)
         .join(" ");

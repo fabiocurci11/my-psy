@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import DivUI from "../ui-components/DivUI";
+import CardPatientUI from '../ui-components/CardPatientUI';
 
-const Modal = ({ closeModal }) => {
+const Modal = ({
+    closeModal,
+    titleProp = "Titolo",
+    itemSelectedProp,
+
+}) => {
     const modalRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
+
+    console.log("itemSelectedProp: ", itemSelectedProp)
 
     // Mostra la modale con animazione entrata
     useEffect(() => {
@@ -12,6 +20,14 @@ const Modal = ({ closeModal }) => {
         if (modalRef.current) {
             modalRef.current.focus();
         }
+
+        // Blocca scroll al montaggio
+        document.body.classList.add('overflow-hidden');
+
+        return () => {
+            // Sblocca scroll allo smontaggio
+            document.body.classList.remove('overflow-hidden');
+        };
     }, []);
 
     // Chiude la modale con animazione uscita
@@ -27,28 +43,14 @@ const Modal = ({ closeModal }) => {
             className="fixed inset-0 bg-white/30 backdrop-blur-sm flex justify-center items-center z-50 transition-opacity duration-200"
             onClick={handleClose}
         >
+            <CardPatientUI
+                visibleProp={isVisible}
+                refModalProp={modalRef}
+                patientSelectedProp={itemSelectedProp}
+                onButtonClick={handleClose}
 
+            />
 
-            <DivUI
-                ref={modalRef}
-                onClick={(e) => e.stopPropagation()}
-                tabIndex={-1}
-                widthProp = "w-1/2"
-                className={`
-          bg-white p-8 rounded-lg shadow-lg w-96 relative
-          transform transition-all duration-200 ease-in-out
-          ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}
-        `}
-            >
-                <h2 className="text-xl font-bold mb-4">Titolo della Modale</h2>
-                <p className="mb-4">Modale con animazione di entrata e uscita 👌</p>
-                <button
-                    onClick={handleClose}
-                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200"
-                >
-                    Chiudi
-                </button>
-            </DivUI>
         </div>,
         document.body
     );

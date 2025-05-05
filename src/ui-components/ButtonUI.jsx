@@ -9,6 +9,8 @@ const ButtonUI = ({
     widthProp,
     fontWeight = "font-semibold",
     textColorProp = "",  // colore del testo per contrasto
+    className,
+    hoverProp="hover:bg-[#ffd8c2]",
     onClick
 }) => {
     
@@ -21,11 +23,12 @@ const ButtonUI = ({
         shadowProp,
         widthProp,
         fontWeight,
+        className,
+        hoverProp,
         textColorProp,          // aggiungiamo il colore del testo
         "transition-colors",    // aggiungiamo una transizione per hover
         "duration-200",         // durata della transizione
         "transform",            // per trasformazioni al passaggio del mouse
-        "hover:bg-[#ffd8c2]",  // effetto hover per cambiare il colore di sfondo
         "hover:text-gray-900"   // cambiamento colore testo su hover
     ]
     .filter((cssClass) => cssClass !== undefined)
