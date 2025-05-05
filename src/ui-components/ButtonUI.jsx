@@ -2,15 +2,20 @@ import React from 'react';
 
 const ButtonUI = ({
     textProp, 
-    paddingProp, 
+    paddingProp="p-2 px-6", 
     bgColorProp = "bg-[#fff4ed]", 
     borderProp, 
-    shadowProp, 
-    widthProp,
+    shadowProp="shadow-md",
+    widthProp="w-auto",
     fontWeight = "font-semibold",
     textColorProp = "",  // colore del testo per contrasto
     onClick
 }) => {
+
+    
+    
+    
+    fontWeight="font-bold"
     
     const cssClasses = [
         "cursor-pointer",

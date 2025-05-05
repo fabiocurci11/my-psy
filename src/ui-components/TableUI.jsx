@@ -46,10 +46,6 @@ const TableUI = ({
                                 <td className={`${tableBorderProp} px-4 py-2`}>
                                     <ButtonUI
                                         textProp="Info"
-                                        paddingProp="p-2 px-6"
-                                        shadowProp="shadow-md"
-                                        widthProp="w-auto"
-                                        fontWeight="font-bold"
                                         onClick={() => onButtonClick(item)} 
                                 
                                     />
