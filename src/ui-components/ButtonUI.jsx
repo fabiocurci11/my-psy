@@ -2,7 +2,7 @@ import React from 'react';
 
 const ButtonUI = ({
     textProp, 
-    paddingProp, 
+    paddingProp="p-2 px-6", 
     bgColorProp = "bg-[#fff4ed]", 
     borderProp, 
     shadowProp, 

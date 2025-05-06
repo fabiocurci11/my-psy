@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import TableUI from '../ui-components/TableUI';
 import Modal from './Modal';
+import DivUI from '../ui-components/DivUI';
+import ButtonUI from '../ui-components/ButtonUI';
+import CardPatientUI from '../ui-components/CardPatientUI';
+import FormAddUI from '../ui-components/FormAddUI';
 
 const Patients = ({ onDataChange }) => {
 
@@ -9,6 +13,10 @@ const Patients = ({ onDataChange }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [patientSelected, setPatientSelected] = useState([]);
+
+    const [modalSelected, setModalSelected] = useState('');
+
+
 
     //dati passati a Sidebar
     const visibleFirstCard = true;
@@ -48,9 +56,17 @@ const Patients = ({ onDataChange }) => {
     // Funzione che gestisce il click del bottone
     const handleButtonClick = (patient) => {
         //alert(`Hai cliccato il bottone per: ${patient.firstName} con ID: ${patient.id}`);
-        console.log("Apertura modale")
-        console.log("Paziente selezionato: ", patient)
-        setPatientSelected(patient)
+        console.log("Apertura modale");
+        console.log("Paziente selezionato: ", patient);
+        setModalSelected("INFO");
+        setPatientSelected(patient);
+        setIsModalOpen(true);
+    };
+
+    const handleClickAddPatient = () => {
+        //alert(`Hai cliccato il bottone per: ${patient.firstName} con ID: ${patient.id}`);
+        console.log("Apertura modale aggiungi paziente")
+        setModalSelected("ADD");
         setIsModalOpen(true);
     };
 
@@ -60,6 +76,19 @@ const Patients = ({ onDataChange }) => {
 
     return (
         <>
+
+            <DivUI
+                className="bg-transparent border border-[#fff4ed]"
+                flexDirectionProp="flex-row-reverse"
+            >
+                <ButtonUI
+                    textProp="Aggiungi"
+                    widthProp="w-auto"
+                    onClick={() => handleClickAddPatient()} 
+                />
+
+            </DivUI>
+
             <TableUI
                 columns={columns}
                 data={patients}
@@ -68,12 +97,19 @@ const Patients = ({ onDataChange }) => {
             />
 
             {/* Condizione per renderizzare la modale */}
-            {isModalOpen &&
-                <Modal
-                    closeModal={closeModal} 
-                    itemSelectedProp={patientSelected}
-                />
-            }
+            {isModalOpen && (
+                <Modal closeModal={closeModal}>
+                    {
+                        modalSelected == 'ADD' 
+                        ?
+                        <FormAddUI />
+                        :
+                        <CardPatientUI patientSelectedProp={patientSelected} />
+                    }
+                   
+                </Modal>
+            )}
+
         </>
     );
 };

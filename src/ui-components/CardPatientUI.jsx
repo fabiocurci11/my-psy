@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import ButtonUI from '../ui-components/ButtonUI';
 
 const CardPatientUI = ({
-    visibleProp,
     refModalProp,
     patientSelectedProp,
+    className = "",
     onButtonClick = () => console.log("Default Click button")
 }) => {
 
@@ -24,10 +24,9 @@ const CardPatientUI = ({
                 tabIndex={-1}
                 widthProp="w-1/2"
                 className={`
-                    shadow-lg relative overflow-auto max-h-3/4
-                    transform transition-all duration-200 ease-in-out
-                    ${visibleProp ? "scale-100 opacity-100" : "scale-95 opacity-0"}
-                `}
+                shadow-lg relative overflow-auto max-h-3/4
+                ${className}
+            `}
             >
 
 
@@ -62,9 +61,9 @@ const CardPatientUI = ({
                     widthProp="w-auto"
                     fontWeight="font-bold"
                     bgColorProp="bg-[#ffd8c2]"
-                    hoverProp="hover:bg-[#eabca2]"
-                    onClick={() => onButtonClick()} 
-            
+                    hoverProp="hover: bg-[#eabca2]"
+                    onClick={() => onButtonClick()}
+
                 />
 
             </DivUI>
