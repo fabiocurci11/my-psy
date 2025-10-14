@@ -1,8 +1,6 @@
-import React, { Children, useState } from 'react';
+import React, { forwardRef } from 'react';
 
-
-const DivUI = ({
-    ref,
+const DivUI = forwardRef(({
     paddingProp = "p-6",
     bgColorProp = "bg-[#fff4ed]",
     borderProp = "rounded-lg",
@@ -13,9 +11,9 @@ const DivUI = ({
     flexGap = "gap-4",
     visibleProp = true,
     className = "",
+    onClick,
     children
-}) => {
-
+}, ref) => {
 
     const cssClasses = [
         paddingProp,
@@ -27,20 +25,21 @@ const DivUI = ({
         flexDirectionProp,
         flexGap,
         className
-      ]
-        .filter((cssClass) => cssClass !== undefined)
+    ]
+        .filter(Boolean)
         .join(" ");
 
-
     return (
-        <>
-            {visibleProp ? (
-                <div className={cssClasses}>
-                    {children}
-                </div>
-            ) : null}
-        </>
+        visibleProp ? (
+            <div
+                className={cssClasses}
+                ref={ref}
+                onClick={onClick}
+            >
+                {children}
+            </div>
+        ) : null
     );
-};
+});
 
 export default DivUI;

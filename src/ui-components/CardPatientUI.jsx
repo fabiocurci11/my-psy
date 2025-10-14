@@ -1,89 +1,63 @@
+import React from 'react';
 import DivUI from "../ui-components/DivUI";
-import React, { useEffect, useRef, useState } from 'react';
 import ButtonUI from '../ui-components/ButtonUI';
 
 const CardPatientUI = ({
     refModalProp,
     patientSelectedProp,
     className = "",
-    onButtonClick = () => console.log("Default Click button")
+    onClick, // <-- questo arriva dal Modal
+    onButtonClick = () => {}
 }) => {
-
-    const cssClasses = [
-
-    ]
-        .filter((cssClass) => cssClass !== undefined)
-        .join(" ");
-
-
     return (
-        <>
-            <DivUI
-                ref={refModalProp}
-                onClick={(e) => e.stopPropagation()}
-                tabIndex={-1}
-                widthProp="w-1/2"
-                className={`
+        <DivUI
+            ref={refModalProp}
+            tabIndex={-1}
+            widthProp="w-1/2"
+            onClick={onClick} // <-- fondamentale per fermare propagazione
+            className={`
                 shadow-lg relative overflow-auto max-h-3/4
                 ${className}
             `}
-            >
-
-
-                <div className="flex items-center gap-4 mb-4">
-                    <img
-                        src="https://placehold.co/400"
-                        alt="Descrizione immagine"
-                        className="w-25 h-25 object-cover rounded-full"
-                    />
-                    <h1 className="text-xl font-bold">{`${patientSelectedProp.firstName} ${patientSelectedProp.lastName}`}</h1>
-                </div>
-
-                <h2 className="font-bold uppercase">Problematica</h2>
-                <p>
-                    Il paziente presenta episodi ricorrenti di ansia generalizzata e difficoltà nella gestione dello stress quotidiano, con sintomi come insonnia, irrequietezza e tensione muscolare. La problematica è stata identificata come legata a fattori lavorativi e relazionali.
-                </p>
-
-                <h2 className="font-bold uppercase">Terapia</h2>
-                <p>
-                    Il percorso terapeutico proposto si basa su un approccio cognitivo-comportamentale, con incontri settimanali individuali. Le sedute si concentrano sul riconoscimento dei pensieri disfunzionali e sull'apprendimento di tecniche di rilassamento e gestione dell’ansia, come la respirazione diaframmatica e il training autogeno.
-                </p>
-
-                <h2 className="font-bold uppercase">Contatti</h2>
-                <p>
-                    Per informazioni o per prenotare un appuntamento, è possibile contattare il numero 345 678 9012 o inviare una mail a studio.psicologo@email.com. Lo studio riceve dal lunedì al venerdì dalle 9:00 alle 18:00 in Via della Serenità 12, Milano.
-                </p>
-
-                <ButtonUI
-                    className="transition duration-200"
-                    textProp="Chiudi"
-                    paddingProp="p-2 px-6"
-                    widthProp="w-auto"
-                    fontWeight="font-bold"
-                    bgColorProp="bg-[#ffd8c2]"
-                    hoverProp="hover: bg-[#eabca2]"
-                    onClick={() => onButtonClick()}
-
+        >
+            <div className="flex items-center gap-4 mb-4">
+                <img
+                    src="https://placehold.co/400"
+                    alt="Descrizione immagine"
+                    className="w-25 h-25 object-cover rounded-full"
                 />
+                <h1 className="text-xl font-bold">
+                    {`${patientSelectedProp.firstName} ${patientSelectedProp.lastName}`}
+                </h1>
+            </div>
 
-            </DivUI>
-        </>
+            <h2 className="font-bold uppercase">Problematica</h2>
+            <p>
+                Il paziente presenta episodi ricorrenti di ansia generalizzata e difficoltà nella gestione dello stress quotidiano, con sintomi come insonnia, irrequietezza e tensione muscolare...
+            </p>
+
+            <h2 className="font-bold uppercase">Terapia</h2>
+            <p>
+                Il percorso terapeutico proposto si basa su un approccio cognitivo-comportamentale...
+            </p>
+
+            <h2 className="font-bold uppercase">Contatti</h2>
+            <p>
+                Per informazioni o per prenotare un appuntamento...
+            </p>
+
+            <ButtonUI
+                className="transition duration-200"
+                textProp="Chiudi"
+                paddingProp="p-2 px-6"
+                widthProp="w-auto"
+                fontWeight="font-bold"
+                bgColorProp="bg-[#ffd8c2]"
+                hoverProp="hover: bg-[#eabca2]"
+                onClick={onButtonClick}
+            />
+        </DivUI>
     );
 };
 
 export default CardPatientUI;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

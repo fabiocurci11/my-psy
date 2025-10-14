@@ -73,6 +73,11 @@ const Patients = ({ onDataChange }) => {
 
     const closeModal = () => setIsModalOpen(false);
 
+    const inputList = [
+        { id: 'name', name: 'name', label: 'Nome', placeholder: 'Inserisci il tuo nome' },
+        { id: 'email', name: 'email', label: 'Email', placeholder: 'Inserisci la tua email' }
+      ];
+
 
     return (
         <>
@@ -102,7 +107,7 @@ const Patients = ({ onDataChange }) => {
                     {
                         modalSelected == 'ADD' 
                         ?
-                        <FormAddUI />
+                        <FormAddUI inputList={inputList}/>
                         :
                         <CardPatientUI patientSelectedProp={patientSelected} />
                     }

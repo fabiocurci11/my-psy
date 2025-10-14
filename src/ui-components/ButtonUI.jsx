@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ButtonUI = ({
+    type = "button",
     textProp, 
     paddingProp="p-2 px-6", 
     bgColorProp = "bg-[#fff4ed]", 
@@ -35,7 +36,10 @@ const ButtonUI = ({
     .join(" ");
 
     return (
-        <button onClick={onClick} className={cssClasses}>
+        <button
+            type={type} 
+            onClick={onClick}
+            className={cssClasses}>
             {textProp}
         </button>
     );

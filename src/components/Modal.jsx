@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-
-const Modal = ({
-    closeModal,
-    children
-}) => {
+const Modal = ({ closeModal, children }) => {
     const modalRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -23,7 +19,7 @@ const Modal = ({
         setIsVisible(false);
         setTimeout(() => {
             closeModal();
-        }, 200); // deve combaciare con la durata dell’animazione
+        }, 200);
     };
 
     return ReactDOM.createPortal(
@@ -33,8 +29,8 @@ const Modal = ({
         >
             {React.cloneElement(children, {
                 refModalProp: modalRef,
-                onClick: (e) => e.stopPropagation(),
-                onButtonClick: handleClose,
+                onClick: (e) => e.stopPropagation(), // <-- gestisce click interno
+                onButtonClick: () => {handleClose()},
                 className: `transform transition-all duration-200 ease-in-out ${
                     isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
                 }`,
